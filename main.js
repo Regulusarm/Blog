@@ -155,8 +155,6 @@
     });
 
     container.prepend(title, list, pagination);
-    
-
  })
  
 
