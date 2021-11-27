@@ -41,10 +41,15 @@
       
       item.classList.add('page-item');
       link.classList.add('page-link');
-      
-      link.textContent = i;
-      link.href = `index.html?page=${i}`
-      
+
+      if(!(i == 1)){ 
+        link.textContent = i;
+        link.href = `index.html?page=${i}`
+      } else {
+        link.textContent = i;
+        link.href = `index.html`
+      };
+
       item.append(link);
       pages.push(item);
     };
@@ -96,8 +101,14 @@
   }  
   
   async function loadList(page) { 
-    const response = await fetch(`https://gorest.co.in/public-api/posts?page=${page}`);
-    const list = await response.json();
+    let list
+    if(page) {
+      const response = await fetch(`https://gorest.co.in/public-api/posts?page=${page}`);
+      list = await response.json();
+    } else {
+      const response = await fetch(`https://gorest.co.in/public-api/posts?page=1`);
+      list = await response.json();
+    }
     return list
   };
   
