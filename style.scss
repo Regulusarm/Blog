@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  box-sizing: border-box;
+  background-image: url(img/background.jpg);
+  background-attachment: fixed;
+}
+.card {
+  padding: 8px 16px;
+}
+.title {
+  color: white;
+  font-weight: 500;
+  font-size: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.post {
+  color: white;
+  font-weight: 500;
+}
+.pagination {
+  justify-content: center;
+}
