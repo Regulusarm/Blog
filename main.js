@@ -1,8 +1,8 @@
 (() => {
-  function createPagination(all, onePage ) {
-    const stage = Math.ceil(all / onePage)
-    console.log(stage)
-    let count = 0;
+  function createPagination(all, onePage, count) {
+    const stage = Math.ceil(all / onePage);
+    count = Math.ceil(count / onePage) - 1;
+    console.log(count);
     const pagination = document.createElement('ul');
     pagination.classList.add('pagination');
 
@@ -66,8 +66,9 @@
     nextLink.style.cursor = 'pointer'
 
     next.addEventListener('click', () => {
-      if(count == stage) {
-        return
+      if(count == (stage - 1)) {
+        return console.log(stage);
+
       }
       while(!(pagination.children[1] == pagination.lastChild)) {
         pagination.children[1].remove()
@@ -137,15 +138,16 @@
     // pageID
     const pageParams = new URLSearchParams(window.location.search);
     const pageId = pageParams.get('page') || 1;
-    
+    console.log(pageId)
     const title = createTitle('Blog', 'h1');
     const list = createlist();
     const loadedList = await loadList(pageId);
+    console.log(loadedList)
 
     // pagination
     const pages = loadedList.meta.pagination.pages;
     const limit = loadedList.meta.pagination.limit;
-    const pagination = createPagination(pages, limit);
+    const pagination = createPagination(pages, limit, pageId);
 
     loadedList.data.forEach(el => {
       const item = createListItem(el.title, el.body, `post.html?id=${el.id}` )
